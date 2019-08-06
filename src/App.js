@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Prueba } from './components/prueba/prueba'
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
         <p>
           Hola soy SIMP con <code>reactjs</code> 
         </p>
+        <Prueba/>
       </header>
     </div>
   );
