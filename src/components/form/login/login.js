@@ -36,6 +36,11 @@ const validate = values => {
       ) {
         errors.mail = 'Correo invalido'
       }
+      if (values.password) {
+        if(values.password.split('').length < 6){
+          errors.password = 'Minimo 6 caracteres'
+        }
+      }
       return errors
 }
 
@@ -56,36 +61,23 @@ const renderTextField = ({
     />
   )
 
-//   const renderPasswordField = ({
-//     label,
-//     input,
-//     meta: { touched, invalid, error },
-//     ...custom
-//   }) => (
-//       <div>
-//   <InputLabel htmlFor="adornment-password">Password</InputLabel>
-//         <Input
-//           id="adornment-password"
-//           type={values.showPassword ? 'text' : 'password'}
-//           value={values.password}
-//           onChange={handleChange('password')}
-//           endAdornment={
-//             <InputAdornment position="end">
-//               <IconButton
-//                 aria-label="toggle password visibility"
-//                 onClick={handleClickShowPassword}
-//                 onMouseDown={handleMouseDownPassword}
-//               >
-//                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
-//               </IconButton>
-//             </InputAdornment>
-//           }
-//         />
-//         </div>
-//   )
-
-
-
+  const renderPasswordField = ({
+    label,
+    input,
+    meta: { touched, invalid, error },
+    ...custom
+  }) => (
+    <TextField
+      label={label}
+      type={'password'}
+    //   style={{background:'rgba(51, 51, 51, 0.06)',borderRadius:'8px 8px 0px 0px'}}
+      placeholder={label}
+      error={touched && invalid}
+      helperText={touched && error}
+      {...input}
+      {...custom}
+    />
+  )
 
 const Login = props =>{
     let {handleSubmit, pristine, submitting} = props
@@ -105,7 +97,7 @@ const Login = props =>{
             <Field
             className={classes.textField}
             name="password"
-            component={renderTextField}
+            component={renderPasswordField}
             label="Contraseña"
             />
         </div>
