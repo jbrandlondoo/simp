@@ -1,6 +1,6 @@
 import React from 'react'
 import Container from '@material-ui/core/Container'
-import Login from './login/login'
+// import Login from './login/login'
 import { makeStyles } from '@material-ui/core/styles'
 import ButtonBar from './../button/buttonBar'
 import RegisterStore from './../form/registerStore/registerStore'

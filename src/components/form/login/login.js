@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button'
 import { styleLogin } from './style'
 // import Visibility from '@material-ui/icons/Visibility'
 // import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import { connect } from 'react-redux'
+import { login } from './../../../store/action/index'
 
 /**
  * @description se encarga de enviar los datos al BackEnd
@@ -14,6 +16,8 @@ import { styleLogin } from './style'
  */
 const onSubmit = values => {
     console.log('values',values)
+    // this.props.login({ token:'',error:'',userId:'',name:'', storeName:''})
+    // localStorage.setItem('authentication', { token:'',error:'',userId:'',name:'', storeName:''})
   }
 
 /**
@@ -52,7 +56,6 @@ const renderTextField = ({
   }) => (
     <TextField
       label={label}
-    //   style={{background:'rgba(51, 51, 51, 0.06)',borderRadius:'8px 8px 0px 0px'}}
       placeholder={label}
       error={touched && invalid}
       helperText={touched && error}
@@ -70,7 +73,6 @@ const renderTextField = ({
     <TextField
       label={label}
       type={'password'}
-    //   style={{background:'rgba(51, 51, 51, 0.06)',borderRadius:'8px 8px 0px 0px'}}
       placeholder={label}
       error={touched && invalid}
       helperText={touched && error}
@@ -82,6 +84,7 @@ const renderTextField = ({
 const Login = props =>{
     let {handleSubmit, pristine, submitting} = props
     let classes = styleLogin()
+    console.log('props',props)
     return(
     <form onSubmit={handleSubmit(onSubmit)}>
         <div>
@@ -111,7 +114,12 @@ const Login = props =>{
     </form>
 )
 }
-export default reduxForm({
+
+const mapStateToProps = state => state
+const mapDispatchToProps = dispatch => ({
+    login:payload=>dispatch(login(payload)),
+})
+export default connect(mapStateToProps,mapDispatchToProps)(reduxForm({
     form:'Login',
     validate
-})(Login)
+})(Login))

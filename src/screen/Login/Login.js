@@ -1,10 +1,12 @@
 import React from 'react'
 import Form from './../../components/form/Form'
-// import Card from '@material-ui/core/Card'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles'
-import Image from './../../img/backgroundLogin.jpg'
 import Container from '@material-ui/core/Container'
+import Image from './../../img/backgroundLogin.jpg'
+import { login } from './../../store/action/index'
+import { connect } from 'react-redux'
+
 
 
 const useStyles = makeStyles({
@@ -24,8 +26,7 @@ const useStyles = makeStyles({
   });
 
 const Login = props =>{
-    console.log(window.height)
-    const classes = useStyles();
+    const classes = useStyles()
     return(
         <Box className={classes.boxMain}>
         <Container className={classes.container}>
@@ -35,4 +36,8 @@ const Login = props =>{
 
     )
 }
-export default Login
+const mapStateToProps = state => state
+const mapDispatchToProps = dispatch => ({
+    login:payload=>dispatch(login(payload)),
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
