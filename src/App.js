@@ -9,12 +9,12 @@ import { connect } from 'react-redux'
 function App(props) {
   const [autenticate, setAutenticate] = useState(false)
   let authentication = localStorage.getItem('authentication')
-  let tem = authentication?props.login(authentication):null
-  tem = props.authentication.token?setAutenticate(true):null
+  // let tem = authentication?props.login(authentication):null
+  // tem = props.authentication.token?setAutenticate(true):null
   return (
     <div>
       {
-      autenticate?<Home/>:<Login/>
+      !autenticate?<Home/>:<Login/>
       }
     </div>
   );

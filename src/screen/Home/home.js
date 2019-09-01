@@ -3,8 +3,11 @@ import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import AppBar from '@material-ui/core/AppBar'
+import Grid from "@material-ui/core/Grid"
 import Table from './../../components/table/Table'
+import SaleBoard from './../../components/saleBoard/SaleBoard'
 import { connect } from 'react-redux'
+
 
 
 
@@ -15,7 +18,7 @@ const useStyles = makeStyles(theme => ({
        background:'#574F7D'
    },
    fill:{
-       height:40
+       height:40,
    },
    title:{
        height:50,
@@ -26,6 +29,7 @@ const useStyles = makeStyles(theme => ({
    box:{
        height:'100%',
        width:'100%',
+       marginTop:10,
    }
 }))
 
@@ -40,7 +44,117 @@ const rows = [
   price:'20000',
   lot:'7',
   code:'0000078'
-  }
+  },
+  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },
+  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },  {product:'kakashi',
+  price:'20000',
+  lot:'7',
+  code:'0000078'
+  },
   ]
 
 const Home = props => {
@@ -48,16 +162,24 @@ const Home = props => {
     let title = props.authentication.storeName?props.authentication.storeName:'SIMP'
     return(
         <Container >
+            {/* este es el componente que hace la barra de header  */}
             <AppBar className={classes.appBar}>
                 <div className={classes.title}>
                     <span>{title.toUpperCase()}</span>
                 </div>
             </AppBar>
+
+            {/* este es el componente que hace el body  */}
             <div className={classes.fill}></div>
                 <Box className={classes.box}>
-                    <div style={{width:500}}>
-                    <Table rows={rows}/>
-                    </div>
+                    <Grid container>
+                        <Box>
+                            <SaleBoard/>
+                        </Box>
+                        <Box>
+                            <Table rows={rows}/>
+                        </Box>
+                    </Grid>      
                 </Box>
         </Container>
     )
