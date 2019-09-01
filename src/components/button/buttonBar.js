@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     container:{
         width:200,
         height:25,
+        
     },
     buttonSelected:{
 
@@ -18,6 +19,7 @@ const useStyles = makeStyles(theme => ({
         height:25,
         width:100,
         fontSize:12
+        
     }
 }))
 

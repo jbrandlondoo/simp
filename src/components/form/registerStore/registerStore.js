@@ -84,7 +84,7 @@ const RegisterStore = props =>{
             className={classes.textField}
             name="document_number"
             component={renderTextField}
-            label="Docuemento"
+            label="Documento"
             />
         </div>
 
