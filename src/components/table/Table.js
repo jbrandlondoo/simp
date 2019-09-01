@@ -27,9 +27,13 @@ const StyledTableRow = withStyles(theme => ({
 }))(TableRow)
 
 const useStyles = makeStyles(theme => ({
+  tablescroll:{
+    overflow:'scroll',
+    height:500,
+    marginTop:20
+  },
   root: {
     width: '100%',
-    marginTop: theme.spacing(3),
     overflowX: 'auto',
   },
   table: {
@@ -44,6 +48,7 @@ const useStyles = makeStyles(theme => ({
 const TableProduct = props => {
   const classes = useStyles()
   return (
+    <div className={classes.tablescroll}>
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
@@ -73,6 +78,7 @@ const TableProduct = props => {
         </TableBody>
       </Table>
     </Paper>
+    </div>
   )
 }
 
