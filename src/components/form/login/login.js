@@ -8,16 +8,24 @@ import { styleLogin } from './style'
 // import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { connect } from 'react-redux'
 import { login } from './../../../store/action/index'
+import * as config from './../../../config'
 
 /**
  * @description se encarga de enviar los datos al BackEnd
  * @param {values} {'name','document_number','city','province','address','phone' }
  * @returns {null}
  */
-const onSubmit = values => {
-    console.log('values',values)
-    // this.props.login({ token:'',error:'',userId:'',name:'', storeName:''})
-    // localStorage.setItem('authentication', { token:'',error:'',userId:'',name:'', storeName:''})
+
+const onSubmit = async values => {
+    // let res = ''
+    // let token = ''
+    // try{
+    //   res = await fetch(config.URL_API+':'+config.PORT_API,config.HEADERS)
+    //   this.props.login({ token:res.data.success.token,error:'',userId:1,name:'juan', storeName:'kakashi'})
+    //   localStorage.setItem('authentication', this.props.authentication)
+    // }catch(err){
+    //   console.log(err)
+    // }
   }
 
 /**

@@ -11,7 +11,6 @@ function App(props) {
   let authentication = localStorage.getItem('authentication')
   let tem = authentication?props.login(authentication):null
   tem = props.authentication.token?setAutenticate(true):null
-  console.log(tem)
   return (
     <div>
       {
