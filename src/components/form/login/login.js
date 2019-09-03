@@ -6,15 +6,27 @@ import Button from '@material-ui/core/Button'
 import { styleLogin } from './style'
 // import Visibility from '@material-ui/icons/Visibility'
 // import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import { connect } from 'react-redux'
+import { login } from './../../../store/action/index'
+import * as config from './../../../config'
 
 /**
  * @description se encarga de enviar los datos al BackEnd
  * @param {values} {'name','document_number','city','province','address','phone' }
  * @returns {null}
  */
-const onSubmit = values => {
-  console.log('values', values)
-}
+
+const onSubmit = async values => {
+    // let res = ''
+    // let token = ''
+    // try{
+    //   res = await fetch(config.URL_API+':'+config.PORT_API,config.HEADERS)
+    //   this.props.login({ token:res.data.success.token,error:'',userId:1,name:'juan', storeName:'kakashi'})
+    //   localStorage.setItem('authentication', this.props.authentication)
+    // }catch(err){
+    //   console.log(err)
+    // }
+  }
 
 /**
  * @description 
@@ -52,7 +64,6 @@ const renderTextField = ({
 }) => (
     <TextField
       label={label}
-      //   style={{background:'rgba(51, 51, 51, 0.06)',borderRadius:'8px 8px 0px 0px'}}
       placeholder={label}
       error={touched && invalid}
       helperText={touched && error}
@@ -70,7 +81,6 @@ const renderPasswordField = ({
     <TextField
       label={label}
       type={'password'}
-      //   style={{background:'rgba(51, 51, 51, 0.06)',borderRadius:'8px 8px 0px 0px'}}
       placeholder={label}
       error={touched && invalid}
       helperText={touched && error}
@@ -79,10 +89,11 @@ const renderPasswordField = ({
     />
   )
 
-const Login = props => {
-  let { handleSubmit, pristine, submitting } = props
-  let classes = styleLogin()
-  return (
+const Login = props =>{
+    let {handleSubmit, pristine, submitting} = props
+    let classes = styleLogin()
+    console.log('props',props)
+    return(
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Field
@@ -111,7 +122,12 @@ const Login = props => {
     </form>
   )
 }
-export default reduxForm({
-  form: 'Login',
-  validate
-})(Login)
+
+const mapStateToProps = state => state
+const mapDispatchToProps = dispatch => ({
+    login:payload=>dispatch(login(payload)),
+})
+export default connect(mapStateToProps,mapDispatchToProps)(reduxForm({
+    form:'Login',
+    validate
+})(Login))
