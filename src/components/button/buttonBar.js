@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         fontSize:12
         
     }
-}))
+}));
 
 
 const ButtonsBar = props => {
@@ -36,7 +36,7 @@ const ButtonsBar = props => {
             </Button >
         </div>
         
-    )
+    );
 
 }
 export default ButtonsBar

@@ -79,9 +79,9 @@ const useStyles = makeStyles(theme => ({
 
     },
 
-    
 
-    registroUsuarioDivMain: {
+
+    userRegisterDivMain: {
         borderRadius: '8px 8px 0px 0px',
         // display: 'inline-block',
         display: 'inline-flex',
@@ -94,16 +94,16 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center',
     },
 
-    registroUsuarioDiv: {
+    userRegisterDiv: {
         display: 'inline-flexbox',
         textAlign: 'center',
         // width: 'auto',
         height: '90%',
         Top: '100px',
-        background:'white',
+        background: 'white',
         // background: 'red',
         marginTop: '10%',
-        
+
 
     },
 }));
@@ -111,7 +111,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const RegistroUsuario = props => {
+const userRegister = props => {
     const [value, setValue] = React.useState('Almacen');
     let { handleSubmit, pristine, submitting } = props
     let classes = useStyles()
@@ -121,8 +121,8 @@ const RegistroUsuario = props => {
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={classes.registroUsuarioDivMain}>
-                <div className={classes.registroUsuarioDiv}>
+            <div className={classes.userRegisterDivMain}>
+                <div className={classes.userRegisterDiv}>
                     <div>
                         <Field
                             className={classes.textField}
@@ -183,6 +183,6 @@ const RegistroUsuario = props => {
     )
 }
 export default reduxForm({
-    form: 'Registrousuario',
+    form: 'userRegister',
     validate
-})(RegistroUsuario)
+})(userRegister)

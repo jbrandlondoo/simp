@@ -9,4 +9,4 @@ export const styleLogin = makeStyles(theme => ({
         margin: theme.spacing(0.1),
         flexBasis: 200,
     },
-}))
+}));

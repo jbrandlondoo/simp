@@ -14,14 +14,15 @@ function App(props) {
   return (
     <div>
       {
-      !autenticate?<Home/>:<Login/>
+      // !autenticate?<Home/>:<Login/>
+      <Login/>
       }
     </div>
   );
-}
+};
 
 const mapStateToProps = state => state
 const mapDispatchToProps = dispatch => ({
     login:payload=>dispatch(login(payload)),
-})
+});
 export default connect(mapStateToProps,mapDispatchToProps)(App)

@@ -17,16 +17,16 @@ import * as config from './../../../config'
  */
 
 const onSubmit = async values => {
-    // let res = ''
-    // let token = ''
-    // try{
-    //   res = await fetch(config.URL_API+':'+config.PORT_API,config.HEADERS)
-    //   this.props.login({ token:res.data.success.token,error:'',userId:1,name:'juan', storeName:'kakashi'})
-    //   localStorage.setItem('authentication', this.props.authentication)
-    // }catch(err){
-    //   console.log(err)
-    // }
-  }
+  // let res = ''
+  // let token = ''
+  // try{
+  //   res = await fetch(config.URL_API+':'+config.PORT_API,config.HEADERS)
+  //   this.props.login({ token:res.data.success.token,error:'',userId:1,name:'juan', storeName:'kakashi'})
+  //   localStorage.setItem('authentication', this.props.authentication)
+  // }catch(err){
+  //   console.log(err)
+  // }
+}
 
 /**
  * @description 
@@ -54,7 +54,7 @@ const validate = values => {
     }
   }
   return errors
-}
+};
 
 const renderTextField = ({
   label,
@@ -70,7 +70,7 @@ const renderTextField = ({
       {...input}
       {...custom}
     />
-  )
+  );
 
 const renderPasswordField = ({
   label,
@@ -87,13 +87,13 @@ const renderPasswordField = ({
       {...input}
       {...custom}
     />
-  )
+  );
 
-const Login = props =>{
-    let {handleSubmit, pristine, submitting} = props
-    let classes = styleLogin()
-    console.log('props',props)
-    return(
+const Login = props => {
+  let { handleSubmit, pristine, submitting } = props
+  let classes = styleLogin()
+  console.log('props', props)
+  return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Field
@@ -120,14 +120,14 @@ const Login = props =>{
       </div>
 
     </form>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => state
 const mapDispatchToProps = dispatch => ({
-    login:payload=>dispatch(login(payload)),
-})
-export default connect(mapStateToProps,mapDispatchToProps)(reduxForm({
-    form:'Login',
-    validate
+  login: payload => dispatch(login(payload)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+  form: 'Login',
+  validate
 })(Login))
