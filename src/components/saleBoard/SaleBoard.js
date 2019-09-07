@@ -17,7 +17,7 @@ const styles ={
         height:30,
         padding:5
     }
-}
+};
 
 /**
  * 
@@ -32,7 +32,7 @@ const SaleBoard = props => {
       <Box style={styles.headerSale} >Venta #{'2'}</Box>
       <hr style={{background:'background: rgba(0, 0, 0, 0.12)'}}/>
   </Box>
-  )
-}
+  );
+};
 
-export default SaleBoard
+export default SaleBoard;
