@@ -10,13 +10,14 @@ import { makeStyles } from '@material-ui/core/styles'
  * @returns {null}
  */
 const onSubmit = values => {
-    console.log('values',values)
+    console.log('values',values);
   }
 
 /**
  * @description 
  * @param {*} values 
  */
+
 const validate = values => {
     const errors = {}
     let requirements = [
@@ -31,9 +32,9 @@ const validate = values => {
         if (!values[item]) {
           errors[item] = 'Required'
         }
-        return item
+        return item;
       })
-      return errors
+      return errors;
 }
 
 const renderTextField = ({
@@ -51,7 +52,7 @@ const renderTextField = ({
       {...input}
       {...custom}
     />
-  )
+  );
 
 
 const useStyles = makeStyles(theme => ({
@@ -63,7 +64,7 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(0.1),
         flexBasis: 200,
     },
-}))
+}));
 
 
 const RegisterStore = props =>{
@@ -131,9 +132,10 @@ const RegisterStore = props =>{
         </div>
  
     </form>
-)
+);
 }
+
 export default reduxForm({
     form:'RegisterStore',
     validate
-})(RegisterStore)
+})(RegisterStore);

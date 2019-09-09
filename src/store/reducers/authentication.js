@@ -1,6 +1,6 @@
-import * as actions from './../action/action'
+import * as actions from './../action/action';
 
-const initialState = {}
+const initialState = {};
 
 export const authentication = (state = initialState, action) =>{
     switch(action.type){

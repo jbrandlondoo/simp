@@ -1,4 +1,4 @@
-import * as actions from './action'
+import * as actions from './action';
 
 /**
  * @description se encarga de guardar el login en store
@@ -11,4 +11,4 @@ import * as actions from './action'
  * }
  * @returns {Object} action
  */
-export const login = payload => ({type:actions.LOGIN,payload})
+export const login = payload => ({type:actions.LOGIN,payload});

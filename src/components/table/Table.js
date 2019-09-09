@@ -16,7 +16,7 @@ const StyledTableCell = withStyles(theme => ({
   body: {
     fontSize: 14,
   },
-}))(TableCell)
+}))(TableCell);
 
 const StyledTableRow = withStyles(theme => ({
   root: {
@@ -24,13 +24,13 @@ const StyledTableRow = withStyles(theme => ({
       backgroundColor: theme.palette.background.default,
     },
   },
-}))(TableRow)
+}))(TableRow);
 
 const useStyles = makeStyles(theme => ({
   tablescroll:{
     overflow:'scroll',
     height:500,
-    marginTop:20
+    marginTop:20,
   },
   root: {
     width: '100%',
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 500,
   },
-}))
+}));
 
 /**
  * 
@@ -79,7 +79,7 @@ const TableProduct = props => {
       </Table>
     </Paper>
     </div>
-  )
+  );
 }
 
-export default TableProduct
+export default TableProduct;

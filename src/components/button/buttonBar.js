@@ -39,4 +39,4 @@ const ButtonsBar = props => {
     );
 
 }
-export default ButtonsBar
+export default ButtonsBar;

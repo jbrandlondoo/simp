@@ -16,7 +16,7 @@ import FormLabel from '@material-ui/core/FormLabel';
  * @returns {null}
  */
 const onSubmit = values => {
-    console.log('values', values)
+    console.log('values', values);
 }
 
 /**
@@ -33,11 +33,11 @@ const validate = values => {
     ]
     requirements.map(item => {
         if (!values[item]) {
-            errors[item] = 'Required'
+            errors[item] = 'Required';
         }
-        return item
+        return item;
     })
-    return errors
+    return errors;
 }
 
 const renderTextField = ({
@@ -55,7 +55,7 @@ const renderTextField = ({
             {...input}
             {...custom}
         />
-    )
+    );
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -78,8 +78,6 @@ const useStyles = makeStyles(theme => ({
         display: 'inline-block',
 
     },
-
-
 
     userRegisterDivMain: {
         borderRadius: '8px 8px 0px 0px',
@@ -109,12 +107,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-
-
 const userRegister = props => {
     const [value, setValue] = React.useState('Almacen');
-    let { handleSubmit, pristine, submitting } = props
-    let classes = useStyles()
+    let { handleSubmit, pristine, submitting } = props;
+    let classes = useStyles();
 
     function handleChange(event) {
         setValue(event.target.value);
@@ -180,9 +176,9 @@ const userRegister = props => {
                 </div>
             </div>
         </form>
-    )
+    );
 }
 export default reduxForm({
     form: 'userRegister',
     validate
-})(userRegister)
+})(userRegister);

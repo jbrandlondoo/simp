@@ -7,7 +7,7 @@ const styles ={
         background:'#FFFFFF',
         height:'100%',
         width:500,
-        margin:20
+        margin:20,
     },
     headerSale:{
         fontFamily:'Roboto',
@@ -15,9 +15,9 @@ const styles ={
         width:'100%',
         textAlign:'center',
         height:30,
-        padding:5
+        padding:5,
     }
-};
+}
 
 /**
  * 
@@ -33,6 +33,6 @@ const SaleBoard = props => {
       <hr style={{background:'background: rgba(0, 0, 0, 0.12)'}}/>
   </Box>
   );
-};
+}
 
 export default SaleBoard;

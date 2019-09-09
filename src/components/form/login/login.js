@@ -54,7 +54,7 @@ const validate = values => {
     }
   }
   return errors
-};
+}
 
 const renderTextField = ({
   label,
@@ -121,7 +121,7 @@ const Login = props => {
 
     </form>
   );
-};
+}
 
 const mapStateToProps = state => state
 const mapDispatchToProps = dispatch => ({
@@ -130,4 +130,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'Login',
   validate
-})(Login))
+})(Login));

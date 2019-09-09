@@ -19,10 +19,10 @@ function App(props) {
       }
     </div>
   );
-};
+}
 
-const mapStateToProps = state => state
+const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
     login:payload=>dispatch(login(payload)),
 });
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(App);
