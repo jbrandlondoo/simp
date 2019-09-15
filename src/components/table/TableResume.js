@@ -6,12 +6,13 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import { connect } from 'react-redux'
+
 
 
 const StyledTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: '#574F7D',
-    color: theme.palette.common.white,
+    color: theme.palette.common.gray
   },
   body: {
     fontSize: 14,
@@ -30,20 +31,17 @@ const useStyles = makeStyles(theme => ({
   tablescroll:{
     overflow:'scroll',
     height:500,
-    marginTop:20,
   },
   root: {
     width: '100%',
-    overflowX: 'auto',
   },
   table: {
-    minWidth: 500,
   },
 }));
 
 /**
  * 
- * @param {*} props  este objeto debe tener ROWS:[{product,price,lot,code}]
+ * @param {*} props  este objeto debe tener products:[{product,price,lot,code}]
  */
 const TableResume = props => {
   const classes = useStyles()
@@ -59,7 +57,7 @@ const TableResume = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.rows?props.rows.map(row => (
+          {props.products?props.products.map(row => (
                 <StyledTableRow 
                 key={row.code}
                 hover
@@ -78,4 +76,10 @@ const TableResume = props => {
   );
 }
 
-export default TableResume;
+const mapStateToProps = state => ({
+  products:state.products.products
+})
+const mapDispatchToProps = dispatch => ({
+
+})
+export default connect(mapStateToProps,mapDispatchToProps)(TableResume)

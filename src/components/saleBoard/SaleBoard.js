@@ -3,6 +3,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
+import TableResume from './../table/TableResume'
 
 const styles ={
     main:{
@@ -49,7 +50,7 @@ const SaleBoard = props => {
       <hr style={{background:'background: rgba(0, 0, 0, 0.12)'}}/>
       <Box>
         {
-          sell?null:
+          sell?<TableResume/>:
         <Fab aria-label="add" onClick={()=>setSell(true)} className={classes.fab}>
           <AddIcon />
         </Fab>}

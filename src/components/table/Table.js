@@ -6,6 +6,9 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import { connect } from 'react-redux'
+import * as actions from './../../store/action/index'
+
 
 
 const StyledTableCell = withStyles(theme => ({
@@ -64,7 +67,7 @@ const TableProduct = props => {
                 <StyledTableRow 
                 key={row.code}
                 hover
-                onClick={event => {console.log(row)}}>
+                onClick={event => {props.addProductToSell(row)}}>
                 <StyledTableCell component="th" scope="row">
                     {row.code}
                 </StyledTableCell>
@@ -82,4 +85,10 @@ const TableProduct = props => {
   );
 }
 
-export default TableProduct;
+
+const mapStateToProps = state => ({
+})
+const mapDispatchToProps = dispatch => ({
+  addProductToSell: payload => dispatch(actions.addProductToSell(payload))
+})
+export default connect(mapStateToProps,mapDispatchToProps)(TableProduct)
