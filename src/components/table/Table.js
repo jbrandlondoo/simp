@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   tablescroll:{
     overflow:'scroll',
     height:500,
-    marginTop:20,
+    marginTop:2,
   },
   root: {
     width: '100%',

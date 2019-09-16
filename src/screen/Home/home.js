@@ -6,10 +6,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Grid from "@material-ui/core/Grid"
 import Table from './../../components/table/Table'
 import SaleBoard from './../../components/saleBoard/SaleBoard'
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux'
-
-
-
 
 const useStyles = makeStyles(theme => ({
    appBar:{
@@ -30,7 +29,16 @@ const useStyles = makeStyles(theme => ({
        height:'100%',
        width:'100%',
        marginTop:10,
-   }
+   },
+   root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+  },
+  textField: {
+    width:'100%',
+  },
 }))
 
 
@@ -176,7 +184,21 @@ const Home = props => {
                         <Box>
                             <SaleBoard/>
                         </Box>
-                        <Box>
+                        <Box style={{marginTop:20}}>
+
+                        <TextField
+                            id="filled-adornment-extra-dense"
+                            className={{...classes.margin, ...classes.textField}}
+                            variant="filled"
+                            margin="dense"
+                            hiddenLabel
+                            InputProps={{
+                            inputProps: {
+                            'aria-label': 'amount in Euro',
+                            },
+                            startAdornment: <InputAdornment position="start"></InputAdornment>,
+                            }}
+                        />
                             <Table rows={rows}/>
                         </Box>
                     </Grid>      
