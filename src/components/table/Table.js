@@ -31,8 +31,9 @@ const StyledTableRow = withStyles(theme => ({
 
 const useStyles = makeStyles(theme => ({
   tablescroll:{
-    overflow:'scroll',
+    overflowY:'scroll',
     height:500,
+    background:'white',
     marginTop:2,
   },
   root: {

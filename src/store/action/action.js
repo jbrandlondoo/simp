@@ -1,3 +1,8 @@
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = 'LOGIN';
 export const ADD_PRODUCT_TO_SELL = 'ADD_PRODUCT_TO_SELL';
+export const CHANGE_QUANTITY = 'CHANGE_QUANTITY';
+export const CANCEL_SELL = 'CANCEL_SELL';
+export const SELECTED_PRODUCT = 'SELECTED_PRODUCT';
+export const DEL_SELECTED_PRODUCT = 'DEL_SELECTED_PRODUCT';
+

@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import Box from '@material-ui/core/Box'
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import TableResume from './../table/TableResume'
+import { connect } from 'react-redux'
+import TableResume from './../table/TableResume';
+import {
+  delSelectedProduct,
+  cancelSell
+} from './../../store/action/index'
 
 const styles ={
     main:{
@@ -29,6 +35,9 @@ const useStyles = makeStyles(theme => ({
     color:'#FFFFFF',
     alignSelf:'center'
   },
+  button: {
+    margin: theme.spacing(1),
+  },
   extendedIcon: {
     marginRight: theme.spacing(1),
   },
@@ -46,11 +55,29 @@ const SaleBoard = props => {
     boxShadow={0}
     style={styles.main}
   >
-      <Box style={styles.headerSale} >{sell?`Venta #{'2'}`:'Iniciar Venta'}</Box>
+      <Box style={styles.headerSale} >{sell?`Venta ${new Date().toLocaleString().slice(0,9)}`:'Iniciar Venta'}</Box>
       <hr style={{background:'background: rgba(0, 0, 0, 0.12)'}}/>
       <Box>
         {
-          sell?<TableResume/>:
+          sell?
+        <Box>
+          <TableResume/>
+          <Button variant="outlined"
+           onClick={props.delSelectedProduct}
+           disabled={props.products.filter(item=>item.selected).length?false:true} className={classes.button}>
+            Eliminar
+          </Button>
+          <Button variant="outlined" color="primary" disabled={props.products.length?false:true} className={classes.button}>
+            Generar Factura
+          </Button>
+          <Button variant="outlined"
+          onClick={props.cancelSell}
+          disabled={props.products.length?false:true}
+          color="secondary" className={classes.button}>
+           Cancelar
+          </Button>
+        </Box>
+          :
         <Fab aria-label="add" onClick={()=>setSell(true)} className={classes.fab}>
           <AddIcon />
         </Fab>}
@@ -59,4 +86,11 @@ const SaleBoard = props => {
   );
 }
 
-export default SaleBoard;
+const mapStateToProps = state => ({
+  products:state.products.products
+})
+const mapDispatchToProps = dispatch => ({
+  delSelectedProduct:()=>dispatch(delSelectedProduct()),
+  cancelSell:()=>dispatch(cancelSell()),
+})
+export default connect(mapStateToProps,mapDispatchToProps)(SaleBoard)

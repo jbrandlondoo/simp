@@ -48,120 +48,25 @@ const rows = [
     lot:'7',
     code:'0000077'
   },
-  {product:'kakashi',
+  {product:'Nico Robbin',
   price:'20000',
   lot:'7',
   code:'0000078'
   },
-  {product:'kakashi',
+  {product:'Sesshomaru',
   price:'20000',
   lot:'7',
-  code:'0000078'
+  code:'0000079'
   },
-  {product:'kakashi',
+  {product:'Gojam',
   price:'20000',
   lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
+  code:'0000080'
+  },
+  {product:'Gojam ',
   price:'20000',
   lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
-  },  {product:'kakashi',
-  price:'20000',
-  lot:'7',
-  code:'0000078'
+  code:'00000801'
   },
   ]
 
@@ -186,9 +91,9 @@ const Home = props => {
                         </Box>
                         <Box style={{marginTop:20}}>
 
-                        <TextField
+                        {/* <TextField
                             id="filled-adornment-extra-dense"
-                            className={{...classes.margin, ...classes.textField}}
+                            // className={{...classes.margin, ...classes.textField}}
                             variant="filled"
                             margin="dense"
                             hiddenLabel
@@ -198,7 +103,7 @@ const Home = props => {
                             },
                             startAdornment: <InputAdornment position="start"></InputAdornment>,
                             }}
-                        />
+                        /> */}
                             <Table rows={rows}/>
                         </Box>
                     </Grid>      
