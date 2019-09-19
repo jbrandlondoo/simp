@@ -14,8 +14,8 @@ function App(props) {
   return (
     <div>
       {
-      !autenticate?<Home/>:<Login/>
-      // <Login/>
+      // !autenticate?<Home/>:<Login/>
+      <Login/>
       }
     </div>
   );

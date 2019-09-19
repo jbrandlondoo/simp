@@ -107,7 +107,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const userRegister = props => {
+const UserRegister = props => {
     const [value, setValue] = React.useState('Almacen');
     let { handleSubmit, pristine, submitting } = props;
     let classes = useStyles();
@@ -117,8 +117,7 @@ const userRegister = props => {
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={classes.userRegisterDivMain}>
-                <div className={classes.userRegisterDiv}>
+            
                     <div>
                         <Field
                             className={classes.textField}
@@ -173,12 +172,11 @@ const userRegister = props => {
                             </RadioGroup>
                         </FormControl>
                     </div>
-                </div>
-            </div>
+               
         </form>
     );
 }
 export default reduxForm({
     form: 'userRegister',
     validate
-})(userRegister);
+})(UserRegister);
