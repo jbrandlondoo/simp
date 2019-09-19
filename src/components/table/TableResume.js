@@ -77,10 +77,10 @@ const TableResume = props => {
                 key={row.code}
                 className={row.selected?classes.rowSelected:null}
                 hover
-                onClick={event => {props.selectProduct(row)}}>
-                <StyledTableCell align="right">{row.product}</StyledTableCell>
-                <StyledTableCell align="right">{row.price},00</StyledTableCell>
-                <StyledTableCell align="right">{row.price*row.lot},00</StyledTableCell>
+                >
+                <StyledTableCell align="right" onClick={event => {props.selectProduct(row)}}>{row.product}</StyledTableCell>
+                <StyledTableCell align="right" onClick={event => {props.selectProduct(row)}}>{row.price},00</StyledTableCell>
+                <StyledTableCell align="right" onClick={event => {props.selectProduct(row)}}>{row.price*row.lot},00</StyledTableCell>
                 <StyledTableCell align="right">
                   <input type='number' className={classes.inputQuantity} value={row.lot} onChange={e=>handleOnChange(e,row.code)}></input>
                 </StyledTableCell>
