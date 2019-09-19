@@ -1,10 +1,10 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import Container from '@material-ui/core/Container'
 import Login from './login/login'
 import UserRegister from '../../screen/UserRegister/UserRegister.js'
 import { makeStyles } from '@material-ui/core/styles'
 import ButtonBar from './../button/buttonBar'
-import RegisterStore from './../form/registerStore/registerStore'
+// import RegisterStore from './../form/registerStore/registerStore'
 
 const useStyles = makeStyles(theme => ({
     main:{
@@ -36,24 +36,23 @@ const useStyles = makeStyles(theme => ({
         width:'100%',
         textAlign:'center'
     }
-}))
+}));
 
 const Forms = props => {
-    let classes = useStyles()
+    let [isRegistered,setIsRegistered] = useState(true);
+    let classes = useStyles();
     return(
         <Container className={classes.main}>
         <Container className={classes.barOptions}>
-            <ButtonBar/>
+            <ButtonBar handleOnClick={setIsRegistered}/>
         </Container>
         <Container className={classes.container}>
             <Container className={classes.containerFormRegister}>
-                {/* <Login/> */}
-                <Login/>
-                <UserRegister/>
+                {isRegistered?<Login/>:<UserRegister/>}
             </Container>
         </Container>
         </Container>
-    )
+    );
 }
 
-export default Forms
+export default Forms;

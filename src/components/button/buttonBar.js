@@ -28,10 +28,10 @@ const ButtonsBar = props => {
     let classes = useStyles()
     return(
         <div className={classes.container}>
-            <Button type="button" className={classes.button} >
+            <Button type="button" className={classes.button} onClick={( ) => props.handleOnClick(true)}>
                 Entrar
             </Button >
-            <Button type="button" className={classes.button} >
+            <Button type="button" className={classes.button} onClick={( ) => props.handleOnClick(false)}>
                 Registrase
             </Button >
         </div>

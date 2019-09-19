@@ -153,12 +153,7 @@ const UserRegister = props => {
                             label="Teléfono"
                         />
                     </div>
-                    <div>
-                        <Button type="submit" disabled={pristine || submitting} variant="contained" color="primary" className={classes.button} >
-                            Registarse
-            </Button >
-                    </div>
-
+                    
                     <div className={classes.botones}>
                         <FormControl component="fieldset" className={classes.formControl}>
                             <FormLabel component="legend">tipo negocio</FormLabel>
@@ -172,6 +167,13 @@ const UserRegister = props => {
                             </RadioGroup>
                         </FormControl>
                     </div>
+
+                    <div>
+                        <Button type="submit" disabled={pristine || submitting} variant="contained" color="primary" className={classes.button} >
+                            Registarse
+            </Button >
+                    </div>
+
                
         </form>
     );
