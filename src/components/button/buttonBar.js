@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
         
     },
     buttonSelected:{
-
     },
     button:{
         background:'rgba(255, 255, 255, 0)',
@@ -19,7 +18,6 @@ const useStyles = makeStyles(theme => ({
         height:25,
         width:100,
         fontSize:12
-        
     }
 }));
 
@@ -28,10 +26,10 @@ const ButtonsBar = props => {
     let classes = useStyles()
     return(
         <div className={classes.container}>
-            <Button type="button" className={classes.button} onClick={( ) => props.handleOnClick(true)}>
+            <Button type="button" className={classes.button} onClick={props.getLogin}>
                 Entrar
             </Button >
-            <Button type="button" className={classes.button} onClick={( ) => props.handleOnClick(false)}>
+            <Button type="button" className={classes.button} onClick={props.getRegister}>
                 Registrase
             </Button >
         </div>

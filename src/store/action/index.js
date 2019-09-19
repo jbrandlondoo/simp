@@ -27,6 +27,7 @@ export const addProductToSell = payload => ({type:actions.ADD_PRODUCT_TO_SELL,pa
  */
 export const changeQuantityProduct = payload => ({type:actions.CHANGE_QUANTITY,payload});
 
+
 /**
  * @description se encarga de cancelar la venta
  * @returns {Object} action

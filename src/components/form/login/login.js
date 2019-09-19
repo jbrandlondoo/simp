@@ -127,7 +127,7 @@ const Login = props => {
   let { handleSubmit, pristine, submitting } = props
   let classes = styleLogin()
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form style={{display:props.visible?'block':'none'}} onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Field
           className={classes.textField}
