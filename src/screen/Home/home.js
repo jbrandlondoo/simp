@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState,useEffect } from 'react'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
@@ -9,6 +9,9 @@ import SaleBoard from './../../components/saleBoard/SaleBoard'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux'
+import Axios from 'axios'
+import * as config from './../../config'
+
 
 const useStyles = makeStyles(theme => ({
    appBar:{
@@ -70,10 +73,24 @@ const rows = [
   },
   ]
 
+  
 const Home = props => {
+
+    let [products,setProducts] = useState([])
+
+    useEffect(() => {
+        Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/storeProducts',{store_id:1},{headers:{'Authorization':'Bearer ' + props.authentication.token}}).then((response)=>{
+            setProducts(response.data.success);
+            // console.log(response.data);
+            
+        });
+    });
+
     let classes = useStyles()
     let title = props.authentication.storeName?props.authentication.storeName:'SIMP'
     return(
+        <div style={{display:props.authentication.token?"block":"none"}}>
+
         <Container >
             {/* este es el componente que hace la barra de header  */}
             <AppBar className={classes.appBar}>
@@ -104,11 +121,12 @@ const Home = props => {
                             startAdornment: <InputAdornment position="start"></InputAdornment>,
                             }}
                         /> */}
-                            <Table rows={rows}/>
+                            <Table rows={products}/>
                         </Box>
                     </Grid>      
                 </Box>
         </Container>
+        </div>
     )
 }
 const mapStateToProps = state => state
