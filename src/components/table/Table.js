@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 
 /**
  * 
- * @param {*} props  este objeto debe tener ROWS:[{product,price,lot,code}]
+ * @param {*} props  este objeto debe tener ROWS:[{product,price,quantity,code}]
  */
 const TableProduct = props => {
   const classes = useStyles()
@@ -66,15 +66,15 @@ const TableProduct = props => {
         <TableBody>
           {props.rows?props.rows.map(row => (
                 <StyledTableRow 
-                key={row.code}
+                key={row.id}
                 hover
                 onClick={event => {props.addProductToSell(row)}}>
                 <StyledTableCell component="th" scope="row">
-                    {row.code}
+                    {row.id}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.product}</StyledTableCell>
+                <StyledTableCell align="right">{row.name}</StyledTableCell>
                 <StyledTableCell align="right">{row.price},00</StyledTableCell>
-                <StyledTableCell align="right">{row.lot}</StyledTableCell>
+                <StyledTableCell align="right">{row.quantity}</StyledTableCell>
                 </StyledTableRow>
           )):
             null
