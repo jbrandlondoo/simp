@@ -55,9 +55,9 @@ const useStyles = makeStyles(theme => ({
  */
 const TableResume = props => {
   const classes = useStyles()
-  const handleOnChange = (e,code) =>{
-    let temp = e.target.value >= 0?e.target.value:0
-    props.changeQuantityProduct({code,quantity:temp})
+  const handleOnChange = (e,id) =>{
+    let temp = e.target.value >= 0 ? e.target.value : 0
+    props.changeQuantityProduct({id,quantity:temp})
   }
   return (
     <div className={classes.tablescroll}>
@@ -82,7 +82,7 @@ const TableResume = props => {
                 <StyledTableCell align="right" onClick={event => {props.selectProduct(row)}}>{row.price},00</StyledTableCell>
                 <StyledTableCell align="right" onClick={event => {props.selectProduct(row)}}>{row.price*row.quantity},00</StyledTableCell>
                 <StyledTableCell align="right">
-                  <input type='number' className={classes.inputQuantity} value={row.quantity} onChange={e=>handleOnChange(e,row.code)}></input>
+                  <input type='number' className={classes.inputQuantity} value={row.quantity} onChange={e=>handleOnChange(e,row.id)}></input>
                 </StyledTableCell>
                 </StyledTableRow>
           )):
