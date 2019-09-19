@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 
 /**
  * 
- * @param {*} props  este objeto debe tener products:[{product,price,lot,code}]
+ * @param {*} props  este objeto debe tener products:[{product,price,quantity,code}]
  */
 const TableResume = props => {
   const classes = useStyles()
@@ -74,15 +74,15 @@ const TableResume = props => {
         <TableBody>
           {props.products?props.products.map(row => (
                 <StyledTableRow 
-                key={row.code}
+                key={row.id}
                 className={row.selected?classes.rowSelected:null}
                 hover
                 onClick={event => {props.selectProduct(row)}}>
-                <StyledTableCell align="right">{row.product}</StyledTableCell>
+                <StyledTableCell align="right">{row.name}</StyledTableCell>
                 <StyledTableCell align="right">{row.price},00</StyledTableCell>
-                <StyledTableCell align="right">{row.price*row.lot},00</StyledTableCell>
+                <StyledTableCell align="right">{row.price*row.quantity},00</StyledTableCell>
                 <StyledTableCell align="right">
-                  <input type='number' className={classes.inputQuantity} value={row.lot} onChange={e=>handleOnChange(e,row.code)}></input>
+                  <input type='number' className={classes.inputQuantity} value={row.quantity} onChange={e=>handleOnChange(e,row.code)}></input>
                 </StyledTableCell>
                 </StyledTableRow>
           )):
