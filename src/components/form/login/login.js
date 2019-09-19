@@ -9,7 +9,7 @@ import { styleLogin } from './style'
 import { connect } from 'react-redux'
 import { login } from './../../../store/action/index'
 import * as config from './../../../config'
-
+import Axios from 'axios';
 /**
  * @description se encarga de enviar los datos al BackEnd
  * @param {values} {'name','document_number','city','province','address','phone' }
@@ -17,12 +17,22 @@ import * as config from './../../../config'
  */
 
 const onSubmit = async values => {
+  Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/login',values).then((response)=>{
+    let data = response.data.success;
+    values.login({token:data.token,error:'',userId:data.id,name:data.name})
+  })
   // let res = ''
   // let token = ''
+  // let data = values;
+  // let headers = {
+  //   method: 'POST',
+  //   body: JSON.stringify(data)
+  // }
   // try{
-  //   res = await fetch(config.URL_API+':'+config.PORT_API,config.HEADERS)
-  //   this.props.login({ token:res.data.success.token,error:'',userId:1,name:'juan', storeName:'kakashi'})
-  //   localStorage.setItem('authentication', this.props.authentication)
+  //   res = await fetch(config.URL_API+':'+config.PORT_API+'/api/v1/login',config.HEADERS)
+  //   // values.login({ token:res.data.success.token,error:'',userId:1,name:'juan', storeName:'kakashi'})
+  //   // localStorage.setItem('authentication', values.authentication)
+  //   console.log(res);
   // }catch(err){
   //   console.log(err)
   // }
@@ -36,7 +46,7 @@ const validate = values => {
   const errors = {}
   let requirements = [
     'password',
-    'mail'
+    'email'
   ]
   requirements.map(item => {
     if (!values[item]) {
@@ -44,9 +54,9 @@ const validate = values => {
     }
     return item
   })
-  if (values.mail && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.mail)
+  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
   ) {
-    errors.mail = 'Correo invalido'
+    errors.email = 'Correo invalido'
   }
   if (values.password) {
     if (values.password.split('').length < 6) {
@@ -90,15 +100,38 @@ const renderPasswordField = ({
   );
 
 const Login = props => {
+
+  const onSubmit = async values => {
+    Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/login',values).then((response)=>{
+      let data = response.data.success;
+      props.login({token:data.token,error:'',userId:data.id,name:data.name})
+      localStorage.setItem('authentication', values.authentication)
+    })
+    // let res = ''
+    // let token = ''
+    // let data = values;
+    // let headers = {
+    //   method: 'POST',
+    //   body: JSON.stringify(data)
+    // }
+    // try{
+    //   res = await fetch(config.URL_API+':'+config.PORT_API+'/api/v1/login',config.HEADERS)
+    //   // values.login({ token:res.data.success.token,error:'',userId:1,name:'juan', storeName:'kakashi'})
+    //   // localStorage.setItem('authentication', values.authentication)
+    //   console.log(res);
+    // }catch(err){
+    //   console.log(err)
+    // }
+  }
+
   let { handleSubmit, pristine, submitting } = props
   let classes = styleLogin()
-  console.log('props', props)
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Field
           className={classes.textField}
-          name="mail"
+          name="email"
           component={renderTextField}
           label="Email"
         />
