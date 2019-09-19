@@ -16,28 +16,6 @@ import Axios from 'axios';
  * @returns {null}
  */
 
-const onSubmit = async values => {
-  Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/login',values).then((response)=>{
-    let data = response.data.success;
-    values.login({token:data.token,error:'',userId:data.id,name:data.name})
-  })
-  // let res = ''
-  // let token = ''
-  // let data = values;
-  // let headers = {
-  //   method: 'POST',
-  //   body: JSON.stringify(data)
-  // }
-  // try{
-  //   res = await fetch(config.URL_API+':'+config.PORT_API+'/api/v1/login',config.HEADERS)
-  //   // values.login({ token:res.data.success.token,error:'',userId:1,name:'juan', storeName:'kakashi'})
-  //   // localStorage.setItem('authentication', values.authentication)
-  //   console.log(res);
-  // }catch(err){
-  //   console.log(err)
-  // }
-}
-
 /**
  * @description 
  * @param {*} values 
@@ -104,7 +82,7 @@ const Login = props => {
   const onSubmit = async values => {
     Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/login',values).then((response)=>{
       let data = response.data.success;
-      props.login({token:data.token,error:'',userId:data.id,name:data.name})
+      props.login({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store.id})
       localStorage.setItem('authentication', JSON.stringify({token:data.token,error:'',userId:data.id,name:data.name}))
     })
   }
