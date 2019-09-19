@@ -28,11 +28,13 @@ const useStyles = makeStyles({
 const Login = props =>{
     const classes = useStyles()
     return(
-        <Box className={classes.boxMain}>
-        <Container className={classes.container}>
-            <Form/>
-        </Container>
-        </Box>
+        <div style={{display:!props.authentication.token?"block":"none"}}>
+            <Box className={classes.boxMain}>
+            <Container className={classes.container}>
+                <Form/>
+            </Container>
+            </Box>
+        </div>
 
     )
 }
