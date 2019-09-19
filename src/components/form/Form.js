@@ -44,15 +44,15 @@ const Forms = props => {
     return(
         <Container className={classes.main}>
         <Container className={classes.barOptions}>
-            <ButtonBar handleOnClick={setIsRegistered}/>
+            <ButtonBar getLogin={()=>setIsRegistered(true)} getRegister={()=>setIsRegistered(false)}/>
         </Container>
         <Container className={classes.container}>
             <Container className={classes.containerFormRegister}>
-                {isRegistered?<Login/>:<UserRegister/>}
+                <Login visible={isRegistered}/>
+                <UserRegister visible={isRegistered}/>
             </Container>
         </Container>
         </Container>
     );
 }
-
 export default Forms;

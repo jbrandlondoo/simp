@@ -116,7 +116,7 @@ const UserRegister = props => {
         setValue(event.target.value);
     }
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form  style={{display:!props.visible?'block':'none'}} onSubmit={handleSubmit(onSubmit)}>
             
                     <div>
                         <Field
