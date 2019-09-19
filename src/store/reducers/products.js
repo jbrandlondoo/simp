@@ -8,7 +8,7 @@ export const products = (state = initialState, action) =>{
     switch(action.type){
         case actions.ADD_PRODUCT_TO_SELL:
             return Object.assign({},state,{
-                products:state.products.find(item => +item.code === +action.payload.code)?state.products:[
+                products:state.products.find(item => +item.id === +action.payload.id)?state.products:[
                     ...state.products,
                     action.payload
                 ]
@@ -16,8 +16,8 @@ export const products = (state = initialState, action) =>{
         case actions.CHANGE_QUANTITY:
             return Object.assign({},state,{
                 products:state.products.map(item=>{
-                    if(+item.code === +action.payload.code)
-                        item.lot = action.payload.quantity 
+                    if(+item.id === +action.payload.id)
+                        item.quantity = action.payload.quantity 
                     return item
                 })
             })
@@ -28,7 +28,7 @@ export const products = (state = initialState, action) =>{
         case actions.SELECTED_PRODUCT:
                 return Object.assign({},state,{
                     products:state.products.map(item=>{
-                        if(+item.code === +action.payload.code)
+                        if(+item.id === +action.payload.id)
                             item.selected = !item.selected 
                         return item
                     })
