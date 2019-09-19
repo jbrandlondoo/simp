@@ -6,10 +6,13 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import TableResume from './../table/TableResume';
+import * as config from './../../config';
+
 import {
   delSelectedProduct,
   cancelSell
 } from './../../store/action/index'
+import Axios from 'axios';
 
 const styles ={
     main:{
@@ -50,6 +53,12 @@ const useStyles = makeStyles(theme => ({
 const SaleBoard = props => {
   const classes = useStyles();
   const [sell, setSell] = useState(false)
+
+  const sellProducts = ()=>{
+    Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/sellProducts',{store_id:props.authentication.storeId,products:props.products},{headers:{'Authorization':'Bearer ' + props.authentication.token}}).then((response)=>{
+      alert("Venta Exitosa!");
+  });
+  }
   return (
     <Box
     boxShadow={0}
@@ -67,7 +76,7 @@ const SaleBoard = props => {
            disabled={props.products.filter(item=>item.selected).length?false:true} className={classes.button}>
             Eliminar
           </Button>
-          <Button variant="outlined" color="primary" disabled={props.products.length?false:true} className={classes.button}>
+          <Button onClick={sellProducts} variant="outlined" color="primary" disabled={props.products.length?false:true} className={classes.button}>
             Generar Factura
           </Button>
           <Button variant="outlined"
@@ -87,7 +96,8 @@ const SaleBoard = props => {
 }
 
 const mapStateToProps = state => ({
-  products:state.products.products
+  products:state.products.products,
+  authentication:state.authentication
 })
 const mapDispatchToProps = dispatch => ({
   delSelectedProduct:()=>dispatch(delSelectedProduct()),
