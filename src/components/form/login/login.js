@@ -9,7 +9,8 @@ import { styleLogin } from './style'
 import { connect } from 'react-redux'
 import { login } from './../../../store/action/index'
 import * as config from './../../../config'
-import Axios from 'axios';
+import Axios from 'axios'
+
 /**
  * @description se encarga de enviar los datos al BackEnd
  * @param {values} {'name','document_number','city','province','address','phone' }
@@ -80,9 +81,9 @@ const renderPasswordField = ({
 const Login = props => {
 
   const onSubmit = async values => {
-    Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/login',values).then((response)=>{
+    Axios.post(`${config.URL_API}/api/v1/login`,values).then((response)=>{
       let data = response.data.success;
-      props.login({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store.id})
+      props.login({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store?data.store.id:''})
       localStorage.setItem('authentication', JSON.stringify({token:data.token,error:'',userId:data.id,name:data.name}))
     })
   }

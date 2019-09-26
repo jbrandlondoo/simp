@@ -80,7 +80,7 @@ const Home = props => {
 
     useEffect(() => {
         if(products.length == 0){
-            Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/storeProducts',{store_id:props.authentication.storeId},{headers:{'Authorization':'Bearer ' + props.authentication.token}}).then((response)=>{
+            Axios.post(config.URL_API+'/api/v1/storeProducts',{store_id:props.authentication.storeId},{headers:{'Authorization':'Bearer ' + props.authentication.token}}).then((response)=>{
                 setProducts(response.data.success);
             });
         }

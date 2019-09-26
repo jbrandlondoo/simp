@@ -55,7 +55,7 @@ const SaleBoard = props => {
   const [sell, setSell] = useState(false)
 
   const sellProducts = ()=>{
-    Axios.post(config.URL_API+':'+config.PORT_API+'/api/v1/sellProducts',{store_id:props.authentication.storeId,products:props.products},{headers:{'Authorization':'Bearer ' + props.authentication.token}}).then((response)=>{
+    Axios.post(config.URL_API+'/api/v1/sellProducts',{store_id:props.authentication.storeId,products:props.products},{headers:{'Authorization':'Bearer ' + props.authentication.token}}).then((response)=>{
       alert("Venta Exitosa!");
   });
   }
