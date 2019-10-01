@@ -3,21 +3,24 @@ import Home from './screen/Home/home'
 import Login from './screen/Login/Login'
 import { login } from './store/action/index'
 import { connect } from 'react-redux'
+import AdminMenu from './components/AdminMenu/AdminMenu'
 
 
 
 function App(props) {
   
   return (
-    <div>
-      {
-        <Home/>
-      }
-      {
-        <Login/>
-      }
+    // <div>
+    //   {
+    //     <Home/>
+    //   }
+    //   {
+    //     <Login/>
+    //   }
         
-    </div>
+    // </div>
+    <AdminMenu />
+
   );
 }
 
