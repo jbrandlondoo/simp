@@ -9,15 +9,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Axios from 'axios'
+import * as config from './../../config';
 
-/**
- * @description se encarga de enviar los datos al BackEnd
- * @param {values} {'name','document_number','city','province','address','phone' }
- * @returns {null}
- */
-const onSubmit = values => {
-    console.log('values', values);
-}
+
+
 
 /**
  * @description 
@@ -115,6 +111,20 @@ const UserRegister = props => {
     function handleChange(event) {
         setValue(event.target.value);
     }
+
+    /**
+ * @description se encarga de enviar los datos al BackEnd
+ * @param {values} {'name','document_number','city','province','address','phone' }
+ * @returns {null}
+ */
+
+const onSubmit = values => {
+    Axios.post(`${config.URL_API}/api/v1/register`,values).then((response)=>{
+        let data = response.data.success;
+        props.login({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store?data.store.id:''})
+        localStorage.setItem('authentication', JSON.stringify({token:data.token,error:'',userId:data.id,name:data.name}))
+    })
+}
     return (
         <form  style={{display:!props.visible?'block':'none'}} onSubmit={handleSubmit(onSubmit)}>
             
@@ -124,6 +134,32 @@ const UserRegister = props => {
                             name="name"
                             component={renderTextField}
                             label="Nombre"
+                        />
+                    </div>
+                    <div>
+                        <Field
+                            className={classes.textField}
+                            name="email"
+                            component={renderTextField}
+                            label="Email"
+                        />
+                    </div>
+
+                    <div>
+                        <Field
+                            className={classes.textField}
+                            name="password"
+                            component={renderTextField}
+                            label="Contraseña"
+                        />
+                    </div>
+
+                    <div>
+                        <Field
+                            className={classes.textField}
+                            name="c_password"
+                            component={renderTextField}
+                            label="Confirmar Contraseña"
                         />
                     </div>
 
@@ -161,9 +197,10 @@ const UserRegister = props => {
                                 className={classes.botones}
                                 value={value}
                                 onChange={handleChange}
+                                name="role_id"
                             >
-                                <FormControlLabel value="Almacen" control={<Radio />} label="Almacen" />
-                                <FormControlLabel value="Proveedor" control={<Radio />} label="Proveedor" />
+                                <FormControlLabel value="2" control={<Radio />} label="Almacen" />
+                                <FormControlLabel value="3" control={<Radio />} label="Proveedor" />
                             </RadioGroup>
                         </FormControl>
                     </div>
