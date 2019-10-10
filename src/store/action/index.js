@@ -1,6 +1,14 @@
 import * as actions from './action';
 
 /**
+ * @description se encarga de reiniciar el store
+ * @param {Object} payload:{
+
+ * @returns {Object} action
+ */
+export const logout = () => ({type:actions.LOGOUT});
+
+/**
  * @description se encarga de guardar el login en store
  * @param {Object} payload:{
  *  token:'',

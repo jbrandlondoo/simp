@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -79,14 +79,22 @@ const renderPasswordField = ({
   );
 
 const Login = props => {
-
+/**
+ * @description esta funcion se encarga de enviar las credenciales al api rest y guardar la respuesta en redux y cache
+ * @param {} values 
+ */
   const onSubmit = async values => {
-    Axios.post(`${config.URL_API}/api/v1/login`,values).then((response)=>{
+    Axios.post(`${config.URL_API}/api/v1/login`,values).then(async (response)=>{
       let data = response.data.success;
-      props.login({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store?data.store.id:''})
-      localStorage.setItem('authentication', JSON.stringify({token:data.token,error:'',userId:data.id,name:data.name}))
+      await props.login({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store?data.store.id:''})
+      localStorage.setItem('authentication', JSON.stringify({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store?data.store.id:''}))
     })
   }
+
+  useEffect(()=>{
+    let auth = JSON.parse(localStorage.getItem('authentication'))
+    let tem = auth?props.login(auth):null
+  })
 
   let { handleSubmit, pristine, submitting } = props
   let classes = styleLogin()
@@ -124,7 +132,7 @@ const mapStateToProps = state => state
 const mapDispatchToProps = dispatch => ({
   login: payload => dispatch(login(payload)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+export default reduxForm({
   form: 'Login',
   validate
-})(Login));
+})(connect(mapStateToProps, mapDispatchToProps)(Login));
