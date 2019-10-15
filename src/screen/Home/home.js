@@ -15,7 +15,7 @@ import { Redirect } from 'react-router-dom'
 import Axios from 'axios'
 import Options from './../../components/options/Options'
 import * as config from './../../config'
-
+import Forms from './../../components/form/Form'
 
 const useStyles = makeStyles(theme => ({
    appBar:{
@@ -28,6 +28,9 @@ const useStyles = makeStyles(theme => ({
    fill:{
        height:40,
    },
+   fillRegisterStore:{
+    height:40,
+    },
    divLine:{
 
    }
@@ -64,6 +67,7 @@ const Home = props => {
             });
         }
     },[products]);
+    let isRegisterStore = !props.authentication.storeId?true:false
     let classes = useStyles()
     let title = props.authentication.storeName?props.authentication.storeName:'SIMP'
     let name = props.authentication.name?props.authentication.name:null
@@ -82,8 +86,14 @@ const Home = props => {
             </AppBar>
 
             {/* este es el componente que hace el body  */}
-            <div className={classes.fill}></div>
-                <Box className={classes.box}>
+            <div className={classes.fill}>
+            </div>
+            {isRegisterStore?
+            <div>
+                <div className={classes.fillRegisterStore}></div>
+                <Forms isRegisterStore/>
+            </div>
+            :<Box className={classes.box}>
                     <Grid container>
                         <Box>
                         <SaleBoard/>
@@ -92,8 +102,9 @@ const Home = props => {
                         <Table rows={products}/>
                         </Box>
                     </Grid>      
-                </Box>
+                </Box>}
         </Container>
+
         </div>:<Redirect to={'/'}/>
 
     )

@@ -3,15 +3,11 @@ import { Field, reduxForm } from 'redux-form'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
+import * as config from './../../../config'
+import Axios from 'axios'
+import { connect } from 'react-redux'
 
-/**
- * @description se encarga de enviar los datos al BackEnd
- * @param {values} {'name','document_number','city','province','address','phone' }
- * @returns {null}
- */
-const onSubmit = values => {
-    console.log('values',values);
-  }
+
 
 /**
  * @description 
@@ -70,6 +66,22 @@ const useStyles = makeStyles(theme => ({
 const RegisterStore = props =>{
     let {handleSubmit, pristine, submitting} = props
     let classes = useStyles()
+    
+/**
+ * @description se encarga de enviar los datos al BackEnd
+ * @param {values} {'name','document_number','city','province','address','phone' }
+ * @returns {null}
+ */
+let onSubmit = values => {
+    values.address = `${values.address},${values.city},${values.province}`
+    Axios.post(`${config.URL_API}/api/v1/createStore`,values,
+      {headers:{'Authorization':'Bearer ' + props.authentication.token}}
+      ).then(async (response)=>{
+        let data = response.data.success;
+        console.log(data)
+      })
+}
+
     return(
     <form onSubmit={handleSubmit(onSubmit)}>
         <div>
@@ -135,7 +147,11 @@ const RegisterStore = props =>{
 );
 }
 
+const mapStateToProps = state => state
+const mapDispatchToProps = dispatch => ({
+});
+
 export default reduxForm({
     form:'RegisterStore',
     validate
-})(RegisterStore);
+})(connect(mapStateToProps, mapDispatchToProps)(RegisterStore));
