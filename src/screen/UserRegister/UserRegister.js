@@ -201,14 +201,14 @@ const UserRegister = props => {
 
 
 
-            {/* <div>
+             <div>
                 <Field
                     className={classes.textField}
                     name="password_C"
                     component={renderTextField}
                     label="Repetir Contraseña"
                 />
-            </div> */}
+            </div>
 
             <div className={classes.botones}>
                 <FormControl component="fieldset" className={classes.formControl}>
