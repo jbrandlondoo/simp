@@ -11,6 +11,8 @@ function App(props) {
     <Router>
         <Route exact path="/" exact component={Login} />
         <Route path="/Home" exact component={Home} />
+        <Route path="/products" exact component={Home} />
+        <Route path="/history" exact component={Home} />
   </Router>
   )
 }

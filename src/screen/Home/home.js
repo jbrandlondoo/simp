@@ -12,10 +12,13 @@ import SaleBoard from './../../components/saleBoard/SaleBoard'
 // import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Axios from 'axios'
 import Options from './../../components/options/Options'
 import * as config from './../../config'
 import Forms from './../../components/form/Form'
+import Button from '@material-ui/core/Button';
+import TableProducts from './../../components/table/tableProducts'
 
 const useStyles = makeStyles(theme => ({
    appBar:{
@@ -70,7 +73,9 @@ const Home = props => {
     let isRegisterStore = !props.authentication.storeId?true:false
     let classes = useStyles()
     let title = props.authentication.storeName?props.authentication.storeName:'SIMP'
-    let name = props.authentication.name?props.authentication.name:null
+    let name = props.authentication.name?props.authentication.name:'SIMP'
+    let path = window.location.href.split('/')
+    path = path[path.length-1]
     return (
         props.authentication.token?
         <div>
@@ -81,11 +86,17 @@ const Home = props => {
                     <Typography variant="h6" className={classes.title}>
                         {title.toUpperCase()}
                     </Typography>
+                    {<Button component={Link} to="/products" style={{color:'#FFF',marginRight:10}} >Productos</Button>}
+                    {<Button component={Link} to="/home" style={{color:'#FFF',marginRight:10}} >Tienda</Button>}
+                    {<Button component={Link} to="/history" style={{color:'#FFF',marginRight:10}} >Historial</Button>}
                     {name?<Options styles={{}} name={name.toUpperCase()}/>:null}
                 </Toolbar>
             </AppBar>
 
             {/* este es el componente que hace el body  */}
+            {
+            path === 'home'?
+            <div>
             <div className={classes.fill}>
             </div>
             {isRegisterStore?
@@ -103,6 +114,18 @@ const Home = props => {
                         </Box>
                     </Grid>      
                 </Box>}
+                </div>:
+                path === 'products'?
+                <div>
+                    <TableProducts/>
+                </div>
+                :
+                path === 'history'?
+                <div>
+
+                </div>
+                :<div></div>
+            }
         </Container>
 
         </div>:<Redirect to={'/'}/>
