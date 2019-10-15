@@ -26,7 +26,7 @@ class TableProducts extends React.Component{
         return(
             <div >
                 <div style={{height:70}}></div>
-                 <Table rows={this.state.products}/>
+                 <Table isView rows={this.state.products}/>
             </div>
         )
     }

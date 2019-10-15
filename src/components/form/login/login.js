@@ -86,8 +86,8 @@ const Login = props => {
   const onSubmit = async values => {
     Axios.post(`${config.URL_API}/api/v1/login`,values).then(async (response)=>{
       let data = response.data.success;
-      await props.login({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store?data.store.id:''})
-      localStorage.setItem('authentication', JSON.stringify({token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store?data.store.id:''}))
+      await props.login({storeName:data.store[0]?data.store[0].name:'',token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store[0]?data.store[0].id:''})
+      localStorage.setItem('authentication', JSON.stringify({storeName:data.store[0]?data.store[0].name:'',token:data.token,error:'',userId:data.id,name:data.name,storeId:data.store[0]?data.store[0].id:''}))
     })
   }
 

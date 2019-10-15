@@ -19,6 +19,7 @@ import * as config from './../../config'
 import Forms from './../../components/form/Form'
 import Button from '@material-ui/core/Button';
 import TableProducts from './../../components/table/tableProducts'
+import ViewSale from './../../components/viewSales/ViewSale'
 
 const useStyles = makeStyles(theme => ({
    appBar:{
@@ -122,7 +123,7 @@ const Home = props => {
                 :
                 path === 'history'?
                 <div>
-
+                    <ViewSale/>
                 </div>
                 :<div></div>
             }

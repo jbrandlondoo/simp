@@ -6,7 +6,6 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { connect } from 'react-redux'
 import * as actions from './../../store/action/index'
 
 
@@ -57,10 +56,9 @@ const TableProduct = props => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <StyledTableCell>Codigo</StyledTableCell>
-            <StyledTableCell align="right">Producto</StyledTableCell>
-            <StyledTableCell align="right">Precio(COP)</StyledTableCell>
-            <StyledTableCell align="right">Cantidad</StyledTableCell>
+            <StyledTableCell># Factura</StyledTableCell>
+            <StyledTableCell align="right">Neto</StyledTableCell>
+            <StyledTableCell align="right">Fecha</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -68,13 +66,12 @@ const TableProduct = props => {
                 <StyledTableRow 
                 key={row.id}
                 hover
-                onClick={event => {return props.isView?null:props.addProductToSell(row)}}>
+                onClick={event => props.showSale(row)}>
                 <StyledTableCell component="th" scope="row">
                     {row.id}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.name}</StyledTableCell>
                 <StyledTableCell align="right">{row.price},00</StyledTableCell>
-                <StyledTableCell align="right">{row.quantity}</StyledTableCell>
+                <StyledTableCell align="right">{row.created_at}</StyledTableCell>
                 </StyledTableRow>
           )):
             null
@@ -87,9 +84,5 @@ const TableProduct = props => {
 }
 
 
-const mapStateToProps = state => ({
-})
-const mapDispatchToProps = dispatch => ({
-  addProductToSell: payload => dispatch(actions.addProductToSell(payload))
-})
-export default connect(mapStateToProps,mapDispatchToProps)(TableProduct)
+
+export default TableProduct
