@@ -134,7 +134,7 @@ const UserRegister = props => {
     const onSubmit = async values => {
         Axios.post(`${config.URL_API}/api/v1/register`, values).then(async (response) => {
             let data = response.data.success;
-            await props.UserRegister({ name: data.name, email: data.email , password:data.password, c_password:data.password_C});
+            await props.UserRegister({ name: data.name, email: data.email , password:data.password});
         });
     }
 
@@ -201,14 +201,14 @@ const UserRegister = props => {
 
 
 
-            <div>
+            {/* <div>
                 <Field
                     className={classes.textField}
                     name="password_C"
                     component={renderTextField}
                     label="Repetir Contraseña"
                 />
-            </div>
+            </div> */}
 
             <div className={classes.botones}>
                 <FormControl component="fieldset" className={classes.formControl}>
