@@ -140,18 +140,18 @@ const UserRegister = props => {
                     <div>
                         <Field
                             className={classes.textField}
-                            name="document_number"
+                            name="lastname"
                             component={renderTextField}
-                            label="Documento"
+                            label="Apellido"
                         />
                     </div>
 
                     <div>
                         <Field
                             className={classes.textField}
-                            name="address"
+                            name="document_number"
                             component={renderTextField}
-                            label="Dirección"
+                            label="Cedula"
                         />
                     </div>
 
@@ -161,6 +161,15 @@ const UserRegister = props => {
                             name="phone"
                             component={renderTextField}
                             label="Teléfono"
+                        />
+                    </div>
+
+                    <div>
+                        <Field
+                            className={classes.textField}
+                            name="password"
+                            component={renderTextField}
+                            label="Contraseña"
                         />
                     </div>
                     
