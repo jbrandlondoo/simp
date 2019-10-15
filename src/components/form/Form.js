@@ -4,7 +4,7 @@ import Login from './login/login'
 import UserRegister from '../../screen/UserRegister/UserRegister.js'
 import { makeStyles } from '@material-ui/core/styles'
 import ButtonBar from './../button/buttonBar'
-// import RegisterStore from './../form/registerStore/registerStore'
+import RegisterStore from './../form/registerStore/registerStore'
 
 const useStyles = makeStyles(theme => ({
     main:{
@@ -41,15 +41,18 @@ const useStyles = makeStyles(theme => ({
 const Forms = props => {
     let [isRegistered,setIsRegistered] = useState(true);
     let classes = useStyles();
+    let isRegisterStore = props.isRegisterStore?props.isRegisterStore:null
+
     return(
         <Container className={classes.main}>
         <Container className={classes.barOptions}>
-            <ButtonBar getLogin={()=>setIsRegistered(true)} getRegister={()=>setIsRegistered(false)}/>
+            {!isRegisterStore?<ButtonBar getLogin={()=>setIsRegistered(true)} getRegister={()=>setIsRegistered(false)}/>:null}
         </Container>
         <Container className={classes.container}>
             <Container className={classes.containerFormRegister}>
-                <Login visible={isRegistered}/>
-                <UserRegister visible={isRegistered}/>
+                {!isRegisterStore?<div><Login visible={isRegistered}/>
+                <UserRegister visible={isRegistered}/></div>:
+                <RegisterStore/>}
             </Container>
         </Container>
         </Container>

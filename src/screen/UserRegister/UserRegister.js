@@ -9,15 +9,10 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import * as config from './../../config'
+import Axios from 'axios'
 
-/**
- * @description se encarga de enviar los datos al BackEnd
- * @param {values} {'name','document_number','city','province','address','phone' }
- * @returns {null}
- */
-const onSubmit = values => {
-    console.log('values', values);
-}
+
 
 /**
  * @description 
@@ -112,8 +107,23 @@ const UserRegister = props => {
     let { handleSubmit, pristine, submitting } = props;
     let classes = useStyles();
 
+    /**
+ * @description se encarga de enviar los datos al BackEnd
+ * @param {values} {'name','document_number','city','province','address','phone' }
+ * @returns {null}
+ */
+    let onSubmit = values => {
+        console.log(values)
+        values.address = `${values.address},${values.city},${values.province}`
+        // Axios.post(`${config.URL_API}/api/v1/createStore`,values).then(async (response)=>{
+        //     let data = response.data.success;
+        //     console.log(data)
+        //   })
+    }
+
     function handleChange(event) {
         setValue(event.target.value);
+        
     }
     return (
         <form  style={{display:!props.visible?'block':'none'}} onSubmit={handleSubmit(onSubmit)}>
