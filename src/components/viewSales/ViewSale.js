@@ -14,8 +14,11 @@ class ViewSale extends React.Component{
         }
     }
     componentDidMount(){
-        Axios.post(`${config.URL_API}/api/v1/getBills/${this.props.authentication.storeId}`,{headers:{'Authorization':'Bearer ' + this.props.authentication.token}}).then(async (response)=>{
-            let data = response.data.success;
+        Axios.get(`${config.URL_API}/api/v1/getBills/${
+            this.props.authentication.storeId}`,{headers:{'Authorization':'Bearer ' + this.props.authentication.token}}).then(async (response)=>{
+            this.setState({
+                rows: response.data
+            })
           })
     }
     componentWillUnmount(){
@@ -23,7 +26,8 @@ class ViewSale extends React.Component{
     }
     render(){
     return(<div>
-        <Sale products={this.sale?this.sale.products:null}/>
+        <div style={{height:70}}></div>
+        {/* <Sale products={this.sale?this.sale.products:null}/> */}
         <TableSales rows={this.state.rows} showSale={sale=>this.setState({sale})}/>
     </div>)
     }

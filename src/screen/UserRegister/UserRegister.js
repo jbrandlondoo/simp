@@ -10,7 +10,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import * as config from './../../config'
+import { connect } from 'react-redux'
+
 import Axios from 'axios'
+import { login } from './../../store/action/index'
+
 
 
 
@@ -44,6 +48,24 @@ const validate = values => {
     }
     return errors;
 }
+
+const renderPasswordField = ({
+    label,
+    input,
+    meta: { touched, invalid, error },
+    ...custom
+  }) => (
+      <TextField
+        label={label}
+        type={'password'}
+        placeholder={label}
+        error={touched && invalid}
+        helperText={touched && error}
+        {...input}
+        {...custom}
+      />
+    );
+  
 
 const renderTextField = ({
     label,
@@ -132,9 +154,11 @@ const UserRegister = props => {
     // }
 
     const onSubmit = async values => {
+        values.role_id = 2
         Axios.post(`${config.URL_API}/api/v1/register`, values).then(async (response) => {
             let data = response.data.success;
-            await props.UserRegister({ name: data.name, email: data.email , password:data.password});
+            await props.login({storeName:'',token:data.token,error:'',userId:data.id,name:data.name,storeId:''})
+            localStorage.setItem('authentication', JSON.stringify({storeName:'',token:data.token,error:'',userId:data.id,name:data.name,storeId:''}))
         });
     }
 
@@ -194,7 +218,7 @@ const UserRegister = props => {
                 <Field
                     className={classes.textField}
                     name="password"
-                    component={renderTextField}
+                    component={renderPasswordField}
                     label="Contraseña"
                 />
             </div>
@@ -204,8 +228,8 @@ const UserRegister = props => {
              <div>
                 <Field
                     className={classes.textField}
-                    name="password_C"
-                    component={renderTextField}
+                    name="c_password"
+                    component={renderPasswordField}
                     label="Repetir Contraseña"
                 />
             </div>
@@ -234,7 +258,13 @@ const UserRegister = props => {
         </form>
     );
 }
+
+
+const mapStateToProps = state => state
+const mapDispatchToProps = dispatch => ({
+  login: payload => dispatch(login(payload)),
+});
 export default reduxForm({
     form: 'userRegister',
     validate
-})(UserRegister);
+})(connect(mapStateToProps, mapDispatchToProps)(UserRegister));
