@@ -32,6 +32,16 @@ const validate = values => {
         }
         return item;
     })
+
+    if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+        errors.email = 'Correo invalido'
+    }
+    if (values.password) {
+        if (values.password.split('').length < 6) {
+            errors.password = 'Minimo 6 caracteres'
+        }
+    }
     return errors;
 }
 
@@ -112,88 +122,115 @@ const UserRegister = props => {
  * @param {values} {'name','document_number','city','province','address','phone' }
  * @returns {null}
  */
-    let onSubmit = values => {
-        console.log(values)
-        values.address = `${values.address},${values.city},${values.province}`
-        // Axios.post(`${config.URL_API}/api/v1/createStore`,values).then(async (response)=>{
-        //     let data = response.data.success;
-        //     console.log(data)
-        //   })
+    // let onSubmit = values => {
+    //     console.log(values)
+    //     values.address = `${values.address},${values.city},${values.province}`
+    //     Axios.post(`${config.URL_API}/api/v1/createStore`,values).then(async (response)=>{
+    //         let data = response.data.success;
+    //         console.log(data)
+    //       })
+    // }
+
+    const onSubmit = async values => {
+        Axios.post(`${config.URL_API}/api/v1/register`, values).then(async (response) => {
+            let data = response.data.success;
+            await props.UserRegister({ name: data.name, email: data.email , password:data.password, c_password:data.password_C});
+        });
     }
 
     function handleChange(event) {
         setValue(event.target.value);
-        
+
     }
     return (
-        <form  style={{display:!props.visible?'block':'none'}} onSubmit={handleSubmit(onSubmit)}>
-            
-                    <div>
-                        <Field
-                            className={classes.textField}
-                            name="name"
-                            component={renderTextField}
-                            label="Nombre"
-                        />
-                    </div>
+        <form style={{ display: !props.visible ? 'block' : 'none' }} onSubmit={handleSubmit(onSubmit)}>
 
-                    <div>
-                        <Field
-                            className={classes.textField}
-                            name="lastname"
-                            component={renderTextField}
-                            label="Apellido"
-                        />
-                    </div>
+            <div>
+                <Field
+                    className={classes.textField}
+                    name="name"
+                    component={renderTextField}
+                    label="Nombre"
+                />
+            </div>
 
-                    <div>
-                        <Field
-                            className={classes.textField}
-                            name="document_number"
-                            component={renderTextField}
-                            label="Cedula"
-                        />
-                    </div>
+            <div>
+                <Field
+                    className={classes.textField}
+                    name="lastname"
+                    component={renderTextField}
+                    label="Apellido"
+                />
+            </div>
 
-                    <div>
-                        <Field
-                            className={classes.textField}
-                            name="phone"
-                            component={renderTextField}
-                            label="Teléfono"
-                        />
-                    </div>
+            <div>
+                <Field
+                    className={classes.textField}
+                    name="document_number"
+                    component={renderTextField}
+                    label="Cedula"
+                />
+            </div>
 
-                    <div>
-                        <Field
-                            className={classes.textField}
-                            name="password"
-                            component={renderTextField}
-                            label="Contraseña"
-                        />
-                    </div>
-                    
-                    <div className={classes.botones}>
-                        <FormControl component="fieldset" className={classes.formControl}>
-                            <FormLabel component="legend">tipo negocio</FormLabel>
-                            <RadioGroup
-                                className={classes.botones}
-                                value={value}
-                                onChange={handleChange}
-                            >
-                                <FormControlLabel value="Almacen" control={<Radio />} label="Almacen" />
-                                <FormControlLabel value="Proveedor" control={<Radio />} label="Proveedor" />
-                            </RadioGroup>
-                        </FormControl>
-                    </div>
+            <div>
+                <Field
+                    className={classes.textField}
+                    name="email"
+                    component={renderTextField}
+                    label="Correo"
+                />
+            </div>
 
-                    <div>
-                        <Button type="submit" disabled={pristine || submitting} variant="contained" color="primary" className={classes.button} >
-                            Registarse
+            <div>
+                <Field
+                    className={classes.textField}
+                    name="phone"
+                    component={renderTextField}
+                    label="Teléfono"
+                />
+            </div>
+
+            <div>
+                <Field
+                    className={classes.textField}
+                    name="password"
+                    component={renderTextField}
+                    label="Contraseña"
+                />
+            </div>
+
+
+
+            <div>
+                <Field
+                    className={classes.textField}
+                    name="password_C"
+                    component={renderTextField}
+                    label="Repetir Contraseña"
+                />
+            </div>
+
+            <div className={classes.botones}>
+                <FormControl component="fieldset" className={classes.formControl}>
+                    <FormLabel component="legend">tipo negocio</FormLabel>
+                    <RadioGroup
+                        className={classes.botones}
+                        value={value}
+                        onChange={handleChange}
+                    >
+                        <FormControlLabel value="Almacen" control={<Radio />} label="Almacen" />
+                        <FormControlLabel value="Proveedor" control={<Radio />} label="Proveedor" />
+                    </RadioGroup>
+                </FormControl>
+            </div>
+
+            <div>
+                <Button type="submit" disabled={pristine || submitting} variant="contained" color="primary" className={classes.button} >
+                    Registarse
             </Button >
-                    </div>
+            </div>
 
-               
+
         </form>
     );
 }
