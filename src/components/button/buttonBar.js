@@ -30,7 +30,7 @@ const ButtonsBar = props => {
                 Entrar
             </Button >
             <Button type="button" className={classes.button} onClick={props.getRegister}>
-                Registrase
+                Registrarse
             </Button >
         </div>
         

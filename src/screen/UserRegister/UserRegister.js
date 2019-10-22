@@ -250,7 +250,7 @@ const UserRegister = props => {
 
             <div>
                 <Button type="submit" disabled={pristine || submitting} variant="contained" color="primary" className={classes.button} >
-                    Registarse
+                    Registrarse
             </Button >
             </div>
 
