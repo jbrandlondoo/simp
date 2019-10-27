@@ -39,11 +39,11 @@ const validate = values => {
 
     if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
     ) {
-        errors.email = 'Correo invalido'
+        errors.email = 'Correo inválido'
     }
     if (values.password) {
         if (values.password.split('').length < 6) {
-            errors.password = 'Minimo 6 caracteres'
+            errors.password = 'Minímo 6 caracteres'
         }
     }
     return errors;
