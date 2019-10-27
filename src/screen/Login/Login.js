@@ -6,8 +6,7 @@ import Container from '@material-ui/core/Container'
 import Image from './../../img/backgroundLogin.jpg'
 import { login } from './../../store/action/index'
 import { connect } from 'react-redux'
-
-
+import { Redirect } from 'react-router-dom'
 
 const useStyles = makeStyles({
     boxMain: {
@@ -27,18 +26,22 @@ const useStyles = makeStyles({
 
 const Login = props =>{
     const classes = useStyles()
-    return(
-        <div style={{display:!props.authentication.token?"block":"none"}}>
+    return (
+        props.token?<Redirect to={'/home'}/>:
+        <div >
             <Box className={classes.boxMain}>
             <Container className={classes.container}>
                 <Form/>
             </Container>
             </Box>
         </div>
-
     )
 }
-const mapStateToProps = state => state
+const mapStateToProps = state => {
+   console.log(state)
+    return({
+    token:state.authentication.token
+})}
 const mapDispatchToProps = dispatch => ({
     login:payload=>dispatch(login(payload)),
 })

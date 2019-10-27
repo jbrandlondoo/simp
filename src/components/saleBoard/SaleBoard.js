@@ -64,7 +64,7 @@ const SaleBoard = props => {
     boxShadow={0}
     style={styles.main}
   >
-      <Box style={styles.headerSale} >{sell?`Venta ${new Date().toLocaleString().slice(0,9)}`:'Iniciar Venta'}</Box>
+      <Box style={styles.headerSale} >{sell?`Venta ${new Date().getTime()}`:'Iniciar Venta'}</Box>
       <hr style={{background:'background: rgba(0, 0, 0, 0.12)'}}/>
       <Box>
         {
