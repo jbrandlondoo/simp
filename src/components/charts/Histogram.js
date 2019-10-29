@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Axios from 'axios';
 import Chart from 'react-google-charts';
 import { maxWidth } from '@material-ui/system';
+import * as config from './../../config'
 
 const styles = {
     main: {
@@ -18,12 +19,31 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
+
+const getData = async values => {
+
+
+    Axios.get(`${config.URL_API}/api/v1/getBills/${
+        this.props.authentication.storeId}`, { headers: { 'Authorization': 'Bearer ' + this.props.authentication.token } }).then(async (response) => {
+            // this.setState({
+            //     rows: response.data
+            // });
+        });
+
+    Axios.get(`${config.URL_API}/api/v1/storeProducts/${
+        this.props.authentication.storeId}`, { headers: { 'Authorization': 'Bearer ' + this.props.authentication.token } }).then(async (response) => {
+            // this.setState({
+            //     rows: response.data
+            // });
+        });
+}
+
 /**
  * 
  * @param {*} props  
  */
 const Histogram = props => {
-    
+
     return (
         <Chart
             width={maxWidth}
@@ -31,28 +51,24 @@ const Histogram = props => {
             chartType="ColumnChart"
             loader={<div>Loading Chart</div>}
             data={[
-                ['City', '2010 Population', '2000 Population'],
-                ['New York City, NY', 8175000, 8008000],
-                ['Los Angeles, CA', 3792000, 3694000],
-                ['Chicago, IL', 2695000, 2896000],
-                ['Houston, TX', 2099000, 1953000],
-                ['Philadelphia, PA', 1526000, 1517000],
-                ['Houston, TX', 2099000, 1953000],
-                ['Philadelphia, PA', 1526000, 1517000],
-                ['Houston, TX', 2099000, 1953000],
-                ['Philadelphia, PA', 1526000, 1517000],
-                ['Houston, TX', 2099000, 1953000],
-                ['Philadelphia, PA', 1526000, 1517000],
+                ['Producto', 'En inventario', 'Vendidos la semana pasada'],
+                ['1', 100, 8],
+                ['2', 379, 369],
+                ['3', 10, 2],
+                ['4', 209, 400],
+                ['5', 152, 151],
+                ['6', 209, 195],
+
             ]}
             options={{
-                title: 'Population of Largest U.S. Cities',
+                title: 'Productos en Inventario y vendidos',
                 chartArea: { width: '30%' },
                 hAxis: {
-                    title: 'Total Population',
+                    title: 'Cantidad de productos',
                     minValue: 0,
                 },
                 vAxis: {
-                    title: 'City',
+                    title: 'Nombre Producto',
                 },
             }}
             legendToggle
