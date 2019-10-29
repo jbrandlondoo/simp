@@ -15,7 +15,8 @@ function App(props) {
         <Route path="/Home" exact component={Home} />
         <Route path="/products" exact component={Home} />
         <Route path="/history" exact component={Home} />
-        <Route path="/histogram" exact component={Histogram} />
+        <Route path="/histogram" exact component={Home} />
+        
   </Router>
 
   // <Histogram/>

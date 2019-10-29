@@ -20,6 +20,7 @@ import Forms from './../../components/form/Form'
 import Button from '@material-ui/core/Button';
 import TableProducts from './../../components/table/tableProducts'
 import ViewSale from './../../components/viewSales/ViewSale'
+import Histogram from './../../components/charts/Histogram'
 
 const useStyles = makeStyles(theme => ({
    appBar:{
@@ -90,6 +91,7 @@ const Home = props => {
                     {<Button component={Link} to="/products" style={{color:'#FFF',marginRight:10}} >Productos</Button>}
                     {<Button component={Link} to="/home" style={{color:'#FFF',marginRight:10}} >Tienda</Button>}
                     {<Button component={Link} to="/history" style={{color:'#FFF',marginRight:10}} >Historial</Button>}
+                    {<Button component={Link} to="/histogram" style={{color:'#FFF',marginRight:10}} >Estadisticas</Button>}
                     {name?<Options styles={{}} name={name.toUpperCase()}/>:null}
                 </Toolbar>
             </AppBar>
@@ -125,7 +127,15 @@ const Home = props => {
                 <div>
                     <ViewSale/>
                 </div>
-                :<div></div>
+                :
+                path === 'histogram'?
+                <div>
+                    <Histogram/>
+                </div>
+                :
+                <div></div>
+
+                
             }
         </Container>
 
