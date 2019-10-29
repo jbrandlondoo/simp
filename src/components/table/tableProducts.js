@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Axios from 'axios'
 import * as config from './../../config'
@@ -38,28 +37,41 @@ class TableProducts extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            products: []
+            products: [],
+            name: "",
+            quantity: "",
+            price: "",
+            
         }
     }
 
     addProduct() {
-        Axios.post(config.URL_API + '/api/v1/createProduct', { store_id: this.props.authentication.storeId }, { headers: { 'Authorization': 'Bearer ' + this.props.authentication.token } }).then((response) => {
+        Axios.post(config.URL_API + '/api/v1/createProduct', { store_id: this.props.authentication.storeId, name: this.state.name, price: this.state.price, quantity: this.state.quantity }, { headers: { 'Authorization': 'Bearer ' + this.props.authentication.token } }).then((response) => {
+            this.getData();
             this.setState({
-                products: response.data.success
-            })
+                name: "",
+                quantity: "",
+                price: "",})
+
         });
+
+        
 
     }
 
-
-
-    componentDidMount() {
-
+    getData() {
         Axios.post(config.URL_API + '/api/v1/storeProducts', { store_id: this.props.authentication.storeId }, { headers: { 'Authorization': 'Bearer ' + this.props.authentication.token } }).then((response) => {
             this.setState({
                 products: response.data.success
             })
         });
+    }
+
+
+
+    componentDidMount() {
+        this.getData();
+
     }
     componentWillUnmount() {
 
@@ -73,22 +85,19 @@ class TableProducts extends React.Component {
 
                 <div>
 
-                    <TextField placeholder={"nombre"} style={styles.inputText}/>
-                    
-
-                    <TextField placeholder={"precio"} style={styles.inputText}/>
-                    
-
-                    <TextField placeholder={"cantidad"} style={styles.inputText}/>
-                    
+                    <TextField value={this.state.name} placeholder={"nombre"} style={styles.inputText} onChange={text => this.setState({ name: text.target.value })} />
 
 
+                    <TextField value={this.state.price} placeholder={"precio"} style={styles.inputText} onChange={text => this.setState({ price: text.target.value })} />
+
+
+                    <TextField value={this.state.quantity} placeholder={"cantidad"} style={styles.inputText} onChange={text => this.setState({ quantity: text.target.value })} />
 
 
                 </div>
 
 
-                <Button style={styles.addButton}>Añadir Producto</Button>
+                <Button style={styles.addButton} onClick={this.addProduct.bind(this)}>Añadir Producto</Button>
 
                 <Table isView rows={this.state.products} />
             </div>
