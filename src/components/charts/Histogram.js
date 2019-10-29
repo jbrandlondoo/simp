@@ -45,7 +45,7 @@ const Histogram = props => {
             { headers: { 'Authorization': 'Bearer ' + props.authentication.token } }).then(async (response) => {
                 let header = ['Producto', 'En inventario', 'Vendidos la semana pasada'];
                 let productsData = [header, ...response.data.map(({ name, selled_quantity, quantity }) => (
-                    [name, selled_quantity, quantity]
+                    [name,  quantity, selled_quantity]
                 ))];
 
 
@@ -72,11 +72,11 @@ const Histogram = props => {
                     title: 'Productos en Inventario y vendidos',
                     chartArea: { width: '30%' },
                     hAxis: {
-                        title: 'Cantidad de productos',
+                        title: 'Nombre Producto',
                         minValue: 0,
                     },
                     vAxis: {
-                        title: 'Nombre Producto',
+                        title: 'Cantidad de productos',
                     },
                 }}
                 legendToggle
