@@ -68,16 +68,6 @@ const Histogram = props => {
                 chartType="ColumnChart"
                 loader={<div>Loading Chart</div>}
                 data = {products}
-                // data={[
-                //     ['Producto', 'En inventario', 'Vendidos la semana pasada'],
-                //     ['1', 100, 8],
-                //     ['2', 379, 369],
-                //     ['3', 10, 2],
-                //     ['4', 209, 400],
-                //     ['5', 152, 151],
-                //     ['6', 209, 195],
-
-                // ]}
                 options={{
                     title: 'Productos en Inventario y vendidos',
                     chartArea: { width: '30%' },
